@@ -1,6 +1,6 @@
 package com.easydto;
 
-public class Student implements DtoConvertible {
+public class Student {
 
     @DtoField
     public String name;
