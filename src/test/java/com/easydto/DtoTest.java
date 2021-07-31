@@ -1,0 +1,39 @@
+package com.easydto;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+
+public class DtoTest {
+
+    private static final ObjectMapper mapper = new ObjectMapper();
+
+    public static void main(String[] args) throws Exception {
+        test();
+    }
+
+    public static void test() throws JsonProcessingException, IllegalAccessException {
+        SimpleModule module = new SimpleModule().addDeserializer(Dto.class, new DtoDeserializer());
+        mapper.registerModule(module);
+
+        Student student = new Student("Shalmoli", "CST");
+//        System.out.println(mapper.writeValueAsString(student));
+
+
+//        ProxyMaker proxyMaker = new ProxyMaker();
+//        Dto<?> dto = proxyMaker.createProxy();
+//        dto.getField("name");
+
+        DtoConverter dtoConverter = new DtoConverter();
+        Dto<Student> dto = dtoConverter.convert(student);
+        System.out.println(dto);
+
+        String json = mapper.writeValueAsString(dto);
+        System.out.println(json);
+
+        System.out.println("object read as : " + mapper.readValue(json, Dto.class));
+
+        System.out.println("Target class is : " + dto.getTargetClass());
+    }
+
+}
