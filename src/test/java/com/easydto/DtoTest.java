@@ -1,5 +1,8 @@
 package com.easydto;
 
+import com.easydto.converter.DtoConverter;
+import com.easydto.converter.DtoDeConverter;
+import com.easydto.serialization.jackson.DtoDeserializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 

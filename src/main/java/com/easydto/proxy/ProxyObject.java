@@ -1,4 +1,4 @@
-package com.easydto;
+package com.easydto.proxy;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

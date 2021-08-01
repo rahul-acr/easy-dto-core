@@ -1,5 +1,7 @@
-package com.easydto;
+package com.easydto.serialization.jackson;
 
+import com.easydto.Dto;
+import com.easydto.proxy.ProxyMaker;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;

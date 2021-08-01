@@ -1,4 +1,7 @@
-package com.easydto;
+package com.easydto.converter;
+
+import com.easydto.Dto;
+import com.easydto.annotation.DtoField;
 
 import java.lang.reflect.Field;
 

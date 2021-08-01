@@ -1,4 +1,4 @@
-package com.easydto;
+package com.easydto.annotation;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

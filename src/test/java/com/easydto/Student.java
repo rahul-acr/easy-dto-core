@@ -1,5 +1,7 @@
 package com.easydto;
 
+import com.easydto.annotation.DtoField;
+
 public class Student {
 
     @DtoField

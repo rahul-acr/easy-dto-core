@@ -1,4 +1,6 @@
-package com.easydto;
+package com.easydto.proxy;
+
+import com.easydto.Dto;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

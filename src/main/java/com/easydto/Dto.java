@@ -1,5 +1,6 @@
 package com.easydto;
 
+import com.easydto.serialization.jackson.DtoSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.Map;

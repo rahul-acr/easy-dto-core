@@ -1,5 +1,6 @@
-package com.easydto;
+package com.easydto.serialization.jackson;
 
+import com.easydto.Dto;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
