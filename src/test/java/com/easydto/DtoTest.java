@@ -1,7 +1,7 @@
 package com.easydto;
 
-import com.easydto.converter.DtoConverter;
-import com.easydto.converter.DtoDeConverter;
+import com.easydto.converter.impl.DefaultDtoConverter;
+import com.easydto.converter.impl.DtoDeConverterImpl;
 import com.easydto.serialization.jackson.DtoDeserializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -26,7 +26,7 @@ public class DtoTest {
 //        Dto<?> dto = proxyMaker.createProxy();
 //        dto.getField("name");
 
-        DtoConverter dtoConverter = new DtoConverter();
+        DefaultDtoConverter dtoConverter = new DefaultDtoConverter();
         Dto<Student> dto = dtoConverter.convert(student);
         System.out.println(dto);
 
@@ -36,7 +36,7 @@ public class DtoTest {
         Dto<Student> ndto = mapper.readValue(json, Dto.class);
         System.out.println("object read as : " + ndto);
 
-        System.out.println("object converted to : " + new DtoDeConverter().convert(ndto, new Student()));
+        System.out.println("object converted to : " + new DtoDeConverterImpl().convert(ndto, new Student()));
 
     }
 
