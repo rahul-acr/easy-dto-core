@@ -1,4 +1,4 @@
-package com.easydto;
+package com.easydto.proxy;
 
 import com.easydto.serialization.jackson.DtoSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

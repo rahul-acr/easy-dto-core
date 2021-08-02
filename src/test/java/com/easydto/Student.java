@@ -7,14 +7,14 @@ public class Student {
     @DtoField
     public String name;
 
-    @DtoField
-    public String department;
+    @DtoField("dept")
+    public Department department;
 
     public Student() {
         // No arg constructor
     }
 
-    public Student(String name, String department) {
+    public Student(String name, Department department) {
         this.name = name;
         this.department = department;
     }

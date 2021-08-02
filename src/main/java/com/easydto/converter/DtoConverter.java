@@ -1,6 +1,6 @@
 package com.easydto.converter;
 
-import com.easydto.Dto;
+import com.easydto.proxy.Dto;
 import com.easydto.exception.DtoConversionException;
 
 public interface DtoConverter {

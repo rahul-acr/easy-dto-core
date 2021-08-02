@@ -1,6 +1,6 @@
 package com.easydto.exception;
 
-public class DtoException extends Exception{
+public class DtoException extends RuntimeException{
     DtoException(Exception e){
         super(e);
     }

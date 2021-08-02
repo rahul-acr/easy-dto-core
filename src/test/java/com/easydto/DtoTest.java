@@ -2,6 +2,7 @@ package com.easydto;
 
 import com.easydto.converter.impl.DefaultDtoConverter;
 import com.easydto.converter.impl.DtoDeConverterImpl;
+import com.easydto.proxy.Dto;
 import com.easydto.serialization.jackson.DtoDeserializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -18,7 +19,7 @@ public class DtoTest {
         SimpleModule module = new SimpleModule().addDeserializer(Dto.class, new DtoDeserializer());
         mapper.registerModule(module);
 
-        Student student = new Student("Shalmoli", "CST");
+        Student student = new Student("Shalmoli", new Department(1L, "CST"));
 //        System.out.println(mapper.writeValueAsString(student));
 
 

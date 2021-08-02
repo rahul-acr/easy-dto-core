@@ -1,31 +1,29 @@
 package com.easydto.converter.impl;
 
-import com.easydto.Dto;
-import com.easydto.annotation.DtoField;
 import com.easydto.converter.DtoConverter;
+import com.easydto.converter.FieldConfiguration;
 import com.easydto.exception.DtoConversionException;
+import com.easydto.proxy.Dto;
 import com.easydto.proxy.ProxyMaker;
 
-import java.lang.reflect.Field;
+import java.util.List;
 
-public class DefaultDtoConverter implements DtoConverter {
+public class DefaultDtoConverter extends ReflectionBasedConverter implements DtoConverter {
 
     public <T> Dto<T> convert(T obj) throws DtoConversionException {
         var proxyMaker = new ProxyMaker();
         @SuppressWarnings("unchecked")
         Dto<T> proxy = (Dto<T>) proxyMaker.createProxy(obj.getClass());
 
-        Field[] fields = obj.getClass().getDeclaredFields();
-        for (Field field : fields) {
-            if (field.isAnnotationPresent(DtoField.class)) {
-                field.setAccessible(true);
-                try {
-                    proxy.setField(field.getName(), field.get(obj));
-                } catch (IllegalAccessException e) {
-                    throw new DtoConversionException(e);
-                }
+        List<FieldConfiguration> fields = getDtoFields(obj.getClass());
+        fields.forEach(e -> {
+            e.field.setAccessible(true);
+            try {
+                proxy.setField(e.targetFieldName, e.field.get(obj));
+            } catch (IllegalAccessException ex) {
+                throw new DtoConversionException(ex);
             }
-        }
+        });
 
         return proxy;
     }
