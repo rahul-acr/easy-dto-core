@@ -17,6 +17,4 @@ public interface Dto<T> {
 
     Map<String, Object> getValues();
 
-
-
 }
