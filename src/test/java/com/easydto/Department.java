@@ -5,7 +5,7 @@ import com.easydto.annotation.DtoField;
 public class Department {
 
     @DtoField
-    public Long id;
+    public long id;
 
     @DtoField
     public String name;
@@ -14,8 +14,16 @@ public class Department {
 
     }
 
-    public Department(Long id, String name) {
+    public Department(long id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

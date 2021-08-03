@@ -19,13 +19,7 @@ public class DtoTest {
         SimpleModule module = new SimpleModule().addDeserializer(Dto.class, new DtoDeserializer());
         mapper.registerModule(module);
 
-        Student student = new Student("Shalmoli", new Department(1L, "CST"));
-//        System.out.println(mapper.writeValueAsString(student));
-
-
-//        ProxyMaker proxyMaker = new ProxyMaker();
-//        Dto<?> dto = proxyMaker.createProxy();
-//        dto.getField("name");
+        Student student = new Student("John", new Department(1, "CST"));
 
         DefaultDtoConverter dtoConverter = new DefaultDtoConverter();
         Dto<Student> dto = dtoConverter.convert(student);
