@@ -24,15 +24,25 @@ public class ReflectionBasedConverter {
         try {
             field.set(obj, value);
         } catch (IllegalAccessException e) {
-            throw new DtoConversionException(e);
+            throw new DtoConversionException("Could not set value in field", e);
         }
     }
 
-    protected static <T> T createNoArgInstance(Class<T> clazz){
+    protected static Object getField(Field field, Object obj) {
         try {
-           return clazz.getConstructor().newInstance();
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            throw new DtoException("Failed to invoke no-arg construtor for "+clazz+". Please declare a no-arg constructor", e);
+            return field.get(obj);
+        } catch (IllegalAccessException e) {
+            throw new DtoConversionException("Could not get value from field", e);
+        }
+    }
+
+    protected static <T> T createNoArgInstance(Class<T> clazz) {
+        try {
+            return clazz.getConstructor().newInstance();
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            throw new DtoException("Failed to invoke no-arg construtor for " + clazz, e);
+        } catch (NoSuchMethodException e) {
+            throw new DtoException("Please declare a no-arg constructor for" + clazz, e);
         }
     }
 

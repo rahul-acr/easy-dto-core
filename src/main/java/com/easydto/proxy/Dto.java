@@ -11,9 +11,9 @@ public interface Dto<T> {
 
     Class<T> getTargetClass();
 
-    void setField(String fieldName, Object obj);
+    void putProperty(String fieldName, Object obj);
 
-    Object getField(String fieldName);
+    Object getProperty(String fieldName);
 
     Map<String, Object> getValues();
 

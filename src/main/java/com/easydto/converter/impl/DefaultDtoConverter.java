@@ -18,11 +18,7 @@ public class DefaultDtoConverter extends ReflectionBasedConverter implements Dto
         List<FieldConfiguration> fields = getDtoFields(obj.getClass());
         fields.forEach(e -> {
             e.field.setAccessible(true);
-            try {
-                proxy.setField(e.targetFieldName, e.field.get(obj));
-            } catch (IllegalAccessException ex) {
-                throw new DtoConversionException(ex);
-            }
+            proxy.putProperty(e.targetFieldName, getField(e.field, obj));
         });
 
         return proxy;

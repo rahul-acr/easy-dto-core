@@ -25,7 +25,7 @@ public class DtoDeserializer extends StdDeserializer<Dto<?>> {
     public Dto<?> deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         Map<String, Object> map = ctxt.readValue(p, Map.class);
         Dto<?> proxy = proxyMaker.createProxy(null);
-        map.forEach(proxy::setField);
+        map.forEach(proxy::putProperty);
         return proxy;
     }
 }

@@ -16,14 +16,14 @@ public class DtoDeConverterImpl extends ReflectionBasedConverter implements DtoD
         List<FieldConfiguration> fieldConfigurations = getDtoFields(obj.getClass());
         fieldConfigurations.forEach(e -> {
             e.field.setAccessible(true);
-            Object val = dto.getField(e.targetFieldName);
+            Object val = dto.getProperty(e.targetFieldName);
             if (e.field.getType().isPrimitive() || e.field.getType() == String.class) {
                 setField(e.field, obj, val);
             } else {
                 var child = createNoArgInstance(e.field.getType());
                 ProxyMaker proxyMaker = new ProxyMaker();
                 Dto<?> childDto = proxyMaker.createProxy(e.field.getType());
-                ((Map<String, Object>) val).forEach(childDto::setField);
+                ((Map<String, Object>) val).forEach(childDto::putProperty);
                 Object vv = convert((Dto<Object>) childDto, child);
                 setField(e.field, obj, vv);
             }
