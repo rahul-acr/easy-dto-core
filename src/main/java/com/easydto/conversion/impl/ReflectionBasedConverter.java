@@ -1,6 +1,6 @@
-package com.easydto.converter.impl;
+package com.easydto.conversion.impl;
 
-import com.easydto.converter.FieldConfiguration;
+import com.easydto.conversion.FieldConfiguration;
 import com.easydto.exception.DtoConversionException;
 import com.easydto.exception.DtoException;
 

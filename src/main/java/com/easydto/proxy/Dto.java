@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.Map;
 
-
 @JsonSerialize(using = DtoSerializer.class)
 public interface Dto<T> {
 

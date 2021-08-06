@@ -1,4 +1,4 @@
-package com.easydto.converter;
+package com.easydto.conversion;
 
 import com.easydto.proxy.Dto;
 import com.easydto.exception.DtoConversionException;
@@ -6,5 +6,7 @@ import com.easydto.exception.DtoConversionException;
 public interface DtoDeConverter {
 
     <T> T convert(Dto<T> dto, T obj) throws DtoConversionException;
+
+    <T> T convert(Dto<T> dto, T obj, String profile) throws DtoConversionException;
 
 }
