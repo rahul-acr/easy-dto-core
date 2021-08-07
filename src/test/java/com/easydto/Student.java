@@ -11,6 +11,7 @@ public class Student {
     public String name;
 
     @DtoField(value = "dept", profile = {REST})
+
     public Department department;
 
     public Student() {

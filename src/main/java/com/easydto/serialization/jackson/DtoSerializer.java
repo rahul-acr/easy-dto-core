@@ -11,6 +11,7 @@ import java.util.Map;
 @SuppressWarnings("rawtypes")
 public class DtoSerializer extends StdSerializer<Dto> {
 
+
     public DtoSerializer(){
         this(null);
     }

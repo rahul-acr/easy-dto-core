@@ -1,6 +1,8 @@
 package com.easydto.proxy;
 
+
 import java.util.Map;
+
 
 public interface Dto<T> {
 
