@@ -10,4 +10,6 @@ public @interface DtoField {
 
     String value() default DEFAULT;
 
+    String[] profile() default {};
+
 }

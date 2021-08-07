@@ -2,12 +2,16 @@ package com.easydto;
 
 import com.easydto.annotation.DtoField;
 
+import static com.easydto.DtoProfileConstants.BATCH;
+import static com.easydto.DtoProfileConstants.REST;
+
 public class Student {
 
-    @DtoField
+    @DtoField(profile = {BATCH})
     public String name;
 
-    @DtoField("dept")
+    @DtoField(value = "dept", profile = {REST})
+
     public Department department;
 
     public Student() {

@@ -10,7 +10,7 @@ public class Department {
     @DtoField
     public String name;
 
-    public Department(){
+    public Department() {
 
     }
 
