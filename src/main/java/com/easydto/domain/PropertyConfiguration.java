@@ -1,10 +1,6 @@
-package com.easydto.conversion;
+package com.easydto.domain;
 
 import com.easydto.annotation.DtoProperty;
-import com.easydto.domain.FieldProperty;
-import com.easydto.domain.Property;
-import com.easydto.domain.ReadMethodProperty;
-import com.easydto.domain.WriteMethodProperty;
 
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Field;

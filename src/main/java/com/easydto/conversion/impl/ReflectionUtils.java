@@ -1,6 +1,6 @@
 package com.easydto.conversion.impl;
 
-import com.easydto.conversion.PropertyConfiguration;
+import com.easydto.domain.PropertyConfiguration;
 import com.easydto.exception.DtoException;
 
 import java.lang.reflect.Field;

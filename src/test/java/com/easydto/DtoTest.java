@@ -1,5 +1,7 @@
 package com.easydto;
 
+import com.easydto.caching.Caching;
+import com.easydto.caching.DefaultConfigurationCache;
 import com.easydto.conversion.impl.DefaultDtoConverter;
 import com.easydto.conversion.impl.DefaultDtoDeConverter;
 import com.easydto.proxy.Dto;
@@ -16,7 +18,6 @@ public class DtoTest {
 
     public static void main(String[] args) throws Exception {
         test();
-        //TODO create read only/write only fields
     }
 
     public static void test() throws Exception {
