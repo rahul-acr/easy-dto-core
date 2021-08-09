@@ -1,7 +1,7 @@
 package com.easydto;
 
 import com.easydto.conversion.impl.DefaultDtoConverter;
-import com.easydto.conversion.impl.DtoDeConverterImpl;
+import com.easydto.conversion.impl.DefaultDtoDeConverter;
 import com.easydto.proxy.Dto;
 import com.easydto.proxy.DtoProxy;
 import com.easydto.serialization.jackson.DtoDeserializer;
@@ -37,7 +37,7 @@ public class DtoTest {
         Dto<Student> ndto = mapper.readValue(json, Dto.class);
         System.out.println("object read as : " + ndto);
 
-        System.out.println("object converted to : " + new DtoDeConverterImpl().convert(ndto, new Student()));
+        System.out.println("object converted to : " + new DefaultDtoDeConverter().convert(ndto, new Student()));
 
 
 

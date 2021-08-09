@@ -1,13 +1,13 @@
 package com.easydto;
 
-import com.easydto.annotation.DtoField;
+import com.easydto.annotation.DtoProperty;
 
 public class Department {
 
-    @DtoField
+    @DtoProperty
     public long id;
 
-    @DtoField
+    @DtoProperty
     public String name;
 
     public Department() {
