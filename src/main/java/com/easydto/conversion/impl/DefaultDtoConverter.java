@@ -1,13 +1,11 @@
 package com.easydto.conversion.impl;
 
+import com.easydto.caching.Caching;
 import com.easydto.conversion.DtoConverter;
-import com.easydto.conversion.PropertyConfiguration;
 import com.easydto.domain.ReadProperty;
 import com.easydto.exception.DtoConversionException;
 import com.easydto.proxy.Dto;
 import com.easydto.proxy.ProxyMaker;
-
-import java.util.List;
 
 public class DefaultDtoConverter implements DtoConverter {
 
@@ -21,9 +19,8 @@ public class DefaultDtoConverter implements DtoConverter {
         @SuppressWarnings("unchecked")
         Dto<T> proxy = (Dto<T>) proxyMaker.createProxy(obj.getClass());
 
-        List<PropertyConfiguration> fields = ReflectionUtils.getDtoProperties(obj.getClass());
-        fields.forEach(e -> {
-            if (e.isAllowedInProfile(profile) && e.isReadable()) {
+        Caching.getConfiguration(obj.getClass()).getPropertyConfigurations().forEach(e -> {
+            if (e.isReadable() && e.isAllowedInProfile(profile)) {
                 proxy.putProperty(e.targetName, ((ReadProperty) e.property).read(obj));
             }
         });
