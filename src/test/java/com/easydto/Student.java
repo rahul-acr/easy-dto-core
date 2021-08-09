@@ -1,17 +1,16 @@
 package com.easydto;
 
-import com.easydto.annotation.DtoField;
+import com.easydto.annotation.DtoProperty;
 
 import static com.easydto.DtoProfileConstants.BATCH;
 import static com.easydto.DtoProfileConstants.REST;
 
 public class Student {
 
-    @DtoField(profile = {BATCH})
+    @DtoProperty(profile = {BATCH})
     public String name;
 
-    @DtoField(value = "dept", profile = {REST})
-
+    @DtoProperty(value = "dept", profile = {REST})
     public Department department;
 
     public Student() {
@@ -21,6 +20,11 @@ public class Student {
     public Student(String name, Department department) {
         this.name = name;
         this.department = department;
+    }
+
+    @DtoProperty("isEnrolled")
+    public boolean hasDepartment(){
+        return department == null;
     }
 
     @Override
