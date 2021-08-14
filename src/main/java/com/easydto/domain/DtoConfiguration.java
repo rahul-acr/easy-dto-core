@@ -1,6 +1,6 @@
 package com.easydto.domain;
 
-import com.easydto.conversion.impl.ReflectionUtils;
+import com.easydto.conversion.converter.impl.ReflectionUtils;
 
 import java.util.Collections;
 import java.util.List;

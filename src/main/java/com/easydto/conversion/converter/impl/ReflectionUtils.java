@@ -1,4 +1,4 @@
-package com.easydto.conversion.impl;
+package com.easydto.conversion.converter.impl;
 
 import com.easydto.domain.PropertyConfiguration;
 import com.easydto.exception.DtoException;

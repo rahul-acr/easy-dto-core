@@ -1,5 +1,6 @@
 package com.easydto.domain;
 
+import com.easydto.enums.PropertyType;
 import com.easydto.exception.PropertyReadException;
 import com.easydto.exception.PropertyWriteException;
 
@@ -40,4 +41,10 @@ public class FieldProperty implements ReadProperty, WriteProperty {
     public Class<?> getType() {
         return field.getType();
     }
+
+    @Override
+    public PropertyType propertyType() {
+        return PropertyType.FIELD;
+    }
+
 }

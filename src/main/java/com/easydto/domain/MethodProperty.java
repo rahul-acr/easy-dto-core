@@ -1,8 +1,10 @@
 package com.easydto.domain;
 
+import com.easydto.enums.PropertyType;
+
 import java.lang.reflect.Method;
 
-public abstract class MethodProperty {
+public abstract class MethodProperty implements Property{
 
     protected final Method method;
 
@@ -10,4 +12,8 @@ public abstract class MethodProperty {
         this.method = method;
     }
 
+    @Override
+    public PropertyType propertyType() {
+        return PropertyType.METHOD;
+    }
 }

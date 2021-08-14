@@ -1,4 +1,4 @@
-package com.easydto.conversion;
+package com.easydto.conversion.converter;
 
 import com.easydto.proxy.Dto;
 import com.easydto.exception.DtoConversionException;

@@ -1,11 +1,9 @@
 package com.easydto;
 
-import com.easydto.caching.Caching;
-import com.easydto.caching.DefaultConfigurationCache;
-import com.easydto.conversion.impl.DefaultDtoConverter;
-import com.easydto.conversion.impl.DefaultDtoDeConverter;
+import com.easydto.conversion.converter.impl.DefaultDtoConverter;
+import com.easydto.conversion.converter.impl.DefaultDtoDeConverter;
 import com.easydto.proxy.Dto;
-import com.easydto.proxy.DtoProxy;
+import com.easydto.proxy.ValueMapDto;
 import com.easydto.serialization.jackson.DtoDeserializer;
 import com.easydto.serialization.jackson.DtoSerializer;
 
@@ -23,7 +21,7 @@ public class DtoTest {
     public static void test() throws Exception {
         SimpleModule module = new SimpleModule()
                 .addDeserializer(Dto.class, new DtoDeserializer())
-                .addSerializer(DtoProxy.class, new DtoSerializer());
+                .addSerializer(ValueMapDto.class, new DtoSerializer());
         mapper.registerModule(module);
 
         Student student = new Student("John", new Department(1, "CST"));

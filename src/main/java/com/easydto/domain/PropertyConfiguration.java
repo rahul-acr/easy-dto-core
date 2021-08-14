@@ -45,13 +45,6 @@ public class PropertyConfiguration {
         return accessibleObject.isAnnotationPresent(DtoProperty.class);
     }
 
-    public boolean isReadable() {
-        return property.canRead();
-    }
-
-    public boolean isWritable() {
-        return property.canWrite();
-    }
 
     public boolean isAllowedInProfile(String profile) {
         if (profile == null || profiles.length == 0) return true;

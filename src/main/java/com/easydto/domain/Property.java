@@ -1,5 +1,7 @@
 package com.easydto.domain;
 
+import com.easydto.enums.PropertyType;
+
 public interface Property {
 
     boolean canRead();
@@ -7,4 +9,7 @@ public interface Property {
     boolean canWrite();
 
     Class<?> getType();
+
+    PropertyType propertyType();
+
 }
