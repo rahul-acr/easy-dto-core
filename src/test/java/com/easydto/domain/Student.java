@@ -1,9 +1,9 @@
-package com.easydto;
+package com.easydto.domain;
 
 import com.easydto.annotation.DtoProperty;
 
-import static com.easydto.DtoProfileConstants.BATCH;
-import static com.easydto.DtoProfileConstants.REST;
+import static com.easydto.domain.DtoProfileConstants.BATCH;
+import static com.easydto.domain.DtoProfileConstants.REST;
 
 public class Student {
 
@@ -24,7 +24,7 @@ public class Student {
 
     @DtoProperty("isEnrolled")
     public boolean hasDepartment(){
-        return department == null;
+        return department != null;
     }
 
     @Override

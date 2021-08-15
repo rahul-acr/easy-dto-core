@@ -1,4 +1,4 @@
-package com.easydto;
+package com.easydto.domain;
 
 import com.easydto.annotation.DtoProperty;
 
