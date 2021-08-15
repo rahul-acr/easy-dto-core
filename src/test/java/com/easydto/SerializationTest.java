@@ -23,10 +23,7 @@ public class SerializationTest {
     @Test
     public void simpleSerialization() throws JsonProcessingException {
         Student student = new Student("John", new Department(1, "CST"));
-
-        DefaultDtoConverter dtoConverter = new DefaultDtoConverter();
-        Dto<Student> dto = dtoConverter.convert(student);
-        System.out.println(dto);
+        Dto<Student> dto = Dto.from(student);
 
         final String json = mapper.writeValueAsString(dto);
 
@@ -36,10 +33,7 @@ public class SerializationTest {
     @Test
     public void profileBasedSerialization() throws JsonProcessingException {
         Student student = new Student("John", new Department(1, "CST"));
-
-        DefaultDtoConverter dtoConverter = new DefaultDtoConverter();
-        Dto<Student> dto = dtoConverter.convert(student, "REST");
-        System.out.println(dto);
+        Dto<Student> dto = Dto.from(student, "REST");
 
         final String json = mapper.writeValueAsString(dto);
 

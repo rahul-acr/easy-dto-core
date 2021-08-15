@@ -1,10 +1,18 @@
 package com.easydto.proxy;
 
 
+import com.easydto.conversion.converter.DtoConverter;
+import com.easydto.conversion.converter.DtoDeConverter;
+import com.easydto.conversion.converter.impl.DefaultDtoConverter;
+import com.easydto.conversion.converter.impl.DefaultDtoDeConverter;
+
 import java.util.Map;
 
 
 public interface Dto<T> {
+
+    DtoDeConverter DEFAULT_DTO_DE_CONVERTER = new DefaultDtoDeConverter();
+    DtoConverter DEFAULT_DTO_CONVERTER = new DefaultDtoConverter();
 
     Class<T> getTargetClass();
 
@@ -17,5 +25,26 @@ public interface Dto<T> {
     Object getProperty(String fieldName);
 
     Map<String, Object> getValues();
+
+    default void map(T target) {
+        map(target, null);
+    }
+
+    default void map(T target, String profile) {
+        map(target, DEFAULT_DTO_DE_CONVERTER, profile);
+    }
+
+    default void map(T target, DtoDeConverter converter, String profile) {
+        converter.convert(this, target, profile);
+    }
+
+    static <X> Dto<X> from(X target) {
+        return from(target, null);
+    }
+
+    static <X> Dto<X> from(X target, String profile) {
+        return DEFAULT_DTO_CONVERTER.convert(target, profile);
+    }
+
 
 }

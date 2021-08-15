@@ -34,7 +34,8 @@ public class DeserializationTest {
 
         Assertions.assertNotNull(dto);
 
-        Student student = new DefaultDtoDeConverter().convert(dto, new Student());
+        Student student = new Student();
+        dto.map(student);
 
         assertEquals("John", student.name);
         assertTrue(student.hasDepartment());
