@@ -15,7 +15,7 @@ public class Caching {
     }
 
     public static void use(ConfigurationCache impl) {
-        assert cache.size() == 0;
+        assert cache == null || cache.size() == 0;
         cache = impl;
     }
 
