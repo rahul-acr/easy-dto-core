@@ -2,6 +2,7 @@ package com.easydto.serialization.jackson;
 
 import com.easydto.proxy.Dto;
 import com.easydto.proxy.DtoFactory;
+import com.easydto.serialization.Deserializer;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.deser.ContextualDeserializer;
@@ -10,7 +11,7 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import java.io.IOException;
 import java.util.Map;
 
-public class DtoDeserializer extends StdDeserializer<Dto<?>> implements ContextualDeserializer{
+public class DtoDeserializer extends StdDeserializer<Dto<?>> implements ContextualDeserializer, Deserializer {
 
     private final DtoFactory dtoFactory = DtoFactory.INSTANCE;
     private Class<?> dtoTargetClass;
