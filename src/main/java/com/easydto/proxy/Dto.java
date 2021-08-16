@@ -43,8 +43,11 @@ public interface Dto<T> {
     }
 
     static <X> Dto<X> from(X target, String profile) {
-        return DEFAULT_DTO_CONVERTER.convert(target, profile);
+        return from(target, profile, DEFAULT_DTO_CONVERTER);
     }
 
+    static <X> Dto<X> from(X target, String profile, DtoConverter converter) {
+        return converter.convert(target, profile);
+    }
 
 }
