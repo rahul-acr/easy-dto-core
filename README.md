@@ -19,6 +19,17 @@ public class Student {
 
 Also, the field name in DTO can be customized in the annotation, otherwise the field name is used.
 
+## Derived Properties
+
+Properties can also be derived for DTO. In this case annotate a `getter` with `@DtoProperty` annotation.
+
+```java
+@DtoProperty("isEnrolled")
+public boolean hasDepartment(){
+    return department != null;
+}
+```
+
 ## Support of Profiles
 
 Often we need different types of a single domain object depending on requirement. That can addressed here using
@@ -91,8 +102,34 @@ private ObjectMapper mapper;
 Registerer.registerModules(mapper);
 ```
 
-Simply autowire the object mapper, the one spring has created and will use internally, and register the modules. And
-you can run your spring application without writing the DTO class or any mapping logic of any sort.
+Simply `autowire` the object mapper, the one spring has created and will use internally, and register the modules. And
+you can run your spring application *without writing the DTO class or any mapping logic of any sort*. Following is a 
+sample Spring Rest Endpoint.
+
+```java
+@RestController
+@RequestMapping("/student")
+public class StudentController {
+
+    @Autowired
+    private StudentService studentService;
+
+    @GetMapping("/{id}")
+    public Dto<Student> get(@PathVariable Long id) {
+        Dto<Student> dto = Dto.from(studentService.getStudent(id));
+        return dto;
+    }
+
+    @PostMapping
+    public void post(@RequestBody Dto<Student> dto) {
+        Student newStudent = new Student();
+        dto.map(newStudent);
+        studentService.saveStudent(newStudent);
+    }
+
+}
+```
+
 
 ## Installation
 
