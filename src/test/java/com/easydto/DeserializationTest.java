@@ -1,6 +1,5 @@
 package com.easydto;
 
-import com.easydto.conversion.converter.impl.DefaultDtoDeConverter;
 import com.easydto.domain.Student;
 import com.easydto.proxy.Dto;
 import com.easydto.serialization.jackson.Registerer;
