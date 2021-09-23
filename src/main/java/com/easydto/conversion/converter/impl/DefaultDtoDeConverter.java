@@ -1,6 +1,7 @@
 package com.easydto.conversion.converter.impl;
 
 import com.easydto.domain.WriteProperty;
+import com.easydto.exception.DtoConversionException;
 import com.easydto.proxy.Dto;
 import com.easydto.proxy.DtoFactory;
 
@@ -32,8 +33,17 @@ public class DefaultDtoDeConverter extends StdDeConverter {
     @Override
     void convertNested(WriteProperty property, String profile, Object target, Object value) {
         Object child = ReflectionUtils.createNoArgInstance(property.getType());
-        Dto<?> childDto = DtoFactory.INSTANCE.createDtoFor(property.getType(), profile);
-        ((Map<String, Object>) value).forEach(childDto::putProperty);
+
+        Dto<?> childDto;
+        if (value instanceof Map) {
+            childDto = DtoFactory.INSTANCE.createDtoFor(property.getType(), profile);
+            ((Map<String, Object>) value).forEach(childDto::putProperty);
+        } else if (value instanceof Dto) {
+            childDto = (Dto<?>) value;
+        } else {
+            throw new DtoConversionException("Unsupported nested type : " + value.getClass());
+        }
+
         Object vv = convert((Dto<Object>) childDto, child, profile);
         property.write(target, vv);
     }

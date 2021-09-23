@@ -46,8 +46,10 @@ public final class ValueMapDto<T> implements Dto<T>{
 
     @Override
     public String toString() {
-        return "ProxyObject{" +
+        return "ValueMapDto{" +
                 "valueMap=" + valueMap +
+                ", targetClass=" + targetClass +
+                ", profile='" + profile + '\'' +
                 '}';
     }
 }

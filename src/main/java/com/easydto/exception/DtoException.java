@@ -9,4 +9,8 @@ public class DtoException extends RuntimeException{
     public DtoException(String message, Throwable cause) {
         super(message, cause);
     }
+
+    public DtoException(String message) {
+        super(message);
+    }
 }

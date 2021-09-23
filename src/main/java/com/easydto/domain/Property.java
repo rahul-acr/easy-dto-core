@@ -1,5 +1,6 @@
 package com.easydto.domain;
 
+import com.easydto.enums.PropertyDeclarationType;
 import com.easydto.enums.PropertyType;
 
 public interface Property {
@@ -10,6 +11,10 @@ public interface Property {
 
     Class<?> getType();
 
-    PropertyType propertyType();
+    PropertyDeclarationType declaredType();
+
+    default PropertyType propertyType() {
+        return TypeManager.instance.resolveType(this);
+    }
 
 }

@@ -6,4 +6,7 @@ public class DtoConversionException extends DtoException{
         super(message, cause);
     }
 
+    public DtoConversionException(String message) {
+        super(message);
+    }
 }
