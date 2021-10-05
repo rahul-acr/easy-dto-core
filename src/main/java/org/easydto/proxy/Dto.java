@@ -5,6 +5,9 @@ import org.easydto.conversion.converter.DtoConverter;
 import org.easydto.conversion.converter.DtoDeConverter;
 import org.easydto.conversion.converter.impl.DefaultDtoConverter;
 import org.easydto.conversion.converter.impl.DefaultDtoDeConverter;
+import org.easydto.domain.ConversionContext;
+import org.easydto.domain.PropertyConfiguration;
+import org.easydto.domain.StdConversionContext;
 
 import java.util.Map;
 
@@ -24,6 +27,10 @@ public interface Dto<T> {
 
     Object getProperty(String fieldName);
 
+    default Object getProperty(PropertyConfiguration propertyConfiguration) {
+        return getProperty(propertyConfiguration.targetName);
+    }
+
     Map<String, Object> getValues();
 
     default void map(T target) {
@@ -35,7 +42,8 @@ public interface Dto<T> {
     }
 
     default void map(T target, DtoDeConverter converter, String profile) {
-        converter.convert(this, target, profile);
+        ConversionContext<T> cc = StdConversionContext.forDeConversion(this, target, profile);
+        converter.convert(cc);
     }
 
     static <X> Dto<X> from(X target) {
@@ -47,7 +55,8 @@ public interface Dto<T> {
     }
 
     static <X> Dto<X> from(X target, String profile, DtoConverter converter) {
-        return converter.convert(target, profile);
+        ConversionContext<X> cc = StdConversionContext.forConversion(target, profile);
+        return converter.convert(cc);
     }
 
 }

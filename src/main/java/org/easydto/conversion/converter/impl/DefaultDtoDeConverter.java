@@ -1,5 +1,7 @@
 package org.easydto.conversion.converter.impl;
 
+import org.easydto.domain.ConversionContext;
+import org.easydto.domain.PropertyConfiguration;
 import org.easydto.domain.WriteProperty;
 import org.easydto.exception.DtoConversionException;
 import org.easydto.proxy.Dto;
@@ -10,12 +12,17 @@ import java.util.Map;
 public class DefaultDtoDeConverter extends StdDeConverter {
 
     @Override
-    void convertPrimitive(WriteProperty property, String profile, Object target, Object value) {
-        property.write(target, value);
+    void convertPrimitive(ConversionContext<?> cc, Object value) {
+        PropertyConfiguration cp = cc.getCurrentPropertyConfiguration();
+        ((WriteProperty) cp.property).write(cc.getDomainObject(), value);
     }
 
     @Override
-    void convertBoxing(WriteProperty property, String profile, Object target, Object value) {
+    void convertBoxing(ConversionContext<?> cc, Object value) {
+        PropertyConfiguration cp = cc.getCurrentPropertyConfiguration();
+        WriteProperty property = ((WriteProperty) cp.property);
+        Object target = cc.getDomainObject();
+
         if (property.getType() == Long.class) {
             property.write(target, ((Number) value).longValue());
         } else if (property.getType() == Integer.class) {
@@ -31,12 +38,16 @@ public class DefaultDtoDeConverter extends StdDeConverter {
 
     @SuppressWarnings("unchecked")
     @Override
-    void convertNested(WriteProperty property, String profile, Object target, Object value) {
+    void convertNested(ConversionContext<?> cc, Object value) {
+        PropertyConfiguration cp = cc.getCurrentPropertyConfiguration();
+        WriteProperty property = ((WriteProperty) cp.property);
+        Object target = cc.getDomainObject();
+
         Object child = ReflectionUtils.createNoArgInstance(property.getType());
 
         Dto<?> childDto;
         if (value instanceof Map) {
-            childDto = DtoFactory.INSTANCE.createDtoFor(property.getType(), profile);
+            childDto = DtoFactory.INSTANCE.createDtoFor(property.getType(), cc.getProfile());
             ((Map<String, Object>) value).forEach(childDto::putProperty);
         } else if (value instanceof Dto) {
             childDto = (Dto<?>) value;
@@ -44,7 +55,10 @@ public class DefaultDtoDeConverter extends StdDeConverter {
             throw new DtoConversionException("Unsupported nested type : " + value.getClass());
         }
 
-        Object vv = convert((Dto<Object>) childDto, child, profile);
+        ConversionContext<?> childContext = cc.createChildContext((Dto<Object>)childDto, child);
+        Object vv = convert(childContext);
         property.write(target, vv);
     }
+
+
 }
