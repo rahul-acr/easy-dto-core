@@ -87,7 +87,7 @@ Registerer.registerModules(mapper);
 ```
 
 Note to use same instance of `ObjectMapper` throughout, modules are registered in Mapper level. PS - ObjectMapper is 
-thread-safe.
+thread-safe. For Jackson support import [EasyDto Jackson](https://github.com/rahul-acr/easy-dto-jackson).
 
 ### Working with Spring
 
